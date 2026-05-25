@@ -27,18 +27,11 @@ const Notepad = ({ onClose, onMinimize }) => {
     const cursorPos = getCursorPos();
 
     return (
-        <div
-            className={`absolute transition-all duration-200 bg-[#f3f3f3]/90 dark:bg-[#202020]/90 backdrop-blur-2xl border border-white/30 dark:border-white/10 shadow-2xl flex flex-col z-40 overflow-hidden
-        ${isMaximized
-                    ? "top-0 left-0 w-full h-[calc(100vh-40px)] rounded-none" // h-[calc(100vh-40px)] accounts for the taskbar
-                    : "top-10 left-32 w-[700px] h-[500px] rounded-xl"
-                }
-      `}
-        >
+<div className={`transition-all duration-200 bg-[#f3f3f3]/90 dark:bg-[#202020]/90 backdrop-blur-2xl border border-white/30 dark:border-white/10 flex flex-col overflow-hidden
+        ${isMaximized ? "w-[100vw] h-[calc(100vh-40px)] rounded-none" : "w-[700px] h-[500px] rounded-xl"}`}>
 
             {/* Title Bar & Tabs */}
-            <div className="h-10 flex justify-between items-center bg-[#e5e5e5]/50 dark:bg-[#1a1a1a]/50 select-none">
-
+<div className="drag-handle h-10 flex justify-between items-center bg-[#e5e5e5]/50 dark:bg-[#1a1a1a]/50 select-none">
                 {/* Tabs Area */}
                 <div className="flex h-full items-end pl-2 pt-2 gap-1 flex-1">
                     {/* Active Tab */}
