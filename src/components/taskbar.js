@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Search,
   ChevronUp,
@@ -11,8 +11,37 @@ import {
 } from "lucide-react";
 
 const Taskbar = () => {
+  const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+
+      // Time (12-hour format like Windows)
+      const formattedTime = now.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+
+      // Date (dd-mm-yyyy)
+      const formattedDate = now.toLocaleDateString("en-GB").replace(/\//g, "-");
+
+      setTime(formattedTime);
+      setDate(formattedDate);
+    };
+
+    updateTime(); // run immediately
+
+    const interval = setInterval(updateTime, 1000); // update every second
+
+    return () => clearInterval(interval); // cleanup
+  }, []);
+
+
   return (
-    <div className="fixed bottom-0 left-0 w-full h-10 bg-[#1c1c1c]/95 backdrop-blur-2xl border-t border-white/10 flex items-center justify-between px-4 z-50">
+    <div className="fixed bottom-0 left-0 w-full h-10 bg-[#1c1c1c]/95 backdrop-blur-2xl border-t border-white/10 flex items-center justify-between px-4 z-[999999]">
 
       {/* Center Icons */}
       <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1">
@@ -103,8 +132,8 @@ const Taskbar = () => {
         </div>
 
         <div className="text-right leading-4">
-          <p className="text-[11px]">01:16 AM</p>
-          <p className="text-[11px]">26-05-2026</p>
+          <p className="text-[11px]">{time}</p>
+          <p className="text-[11px]">{date}</p>
         </div>
 
         <Bell className="w-4 h-4 text-[#b7f3ff]" />
