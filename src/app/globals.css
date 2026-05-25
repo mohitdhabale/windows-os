@@ -24,3 +24,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* Target the theme to add our custom windows-spin animation */
+@theme {
+  --animate-win-spin: win-spin 3s cubic-bezier(0.53, 0.21, 0.29, 0.67) infinite;
+
+  @keyframes win-spin {
+    0% { transform: rotate(0deg); opacity: 0; }
+    5% { opacity: 1; }
+    70% { transform: rotate(360deg); opacity: 1; }
+    80% { transform: rotate(390deg); opacity: 0; }
+    100% { transform: rotate(390deg); opacity: 0; }
+  }
+}
